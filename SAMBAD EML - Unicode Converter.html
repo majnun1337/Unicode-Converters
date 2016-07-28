@@ -20,6 +20,10 @@ function convert_to_unicode()
 
 var text_array = new Array(
 
+	//"\uE838\uE8EB","ିର୍ ",
+	"\uE98E","ୁ",
+	"\uE8F1","\uE838\uE8EB",
+	"\uE82D\uE8F6","ର‌୍ୟ",
     "\uE807" , "ଅ" , // a
     "\uE808" , "ଆ" , // aa
     "\uE809" , "ଇ" , // i
@@ -373,7 +377,8 @@ var text_array = new Array(
     "\uE964" , "୍ଶ" ,
     "\uE965" , "୍ଷ" ,
     "\uE966" , "୍ସ" ,
-    "\uE967" , "୍ହ"
+    "\uE967" , "୍ହ",
+	"ଅା","ଆ"
 )
 //**********************************************
 
@@ -413,20 +418,20 @@ idx = modified_substring.indexOf( text_array[input_symbol_idx] )
 } // end of for loop
 
 // see if the following needs to include more letters than  [କସ]
-modified_substring = modified_substring.replace(   /([କସ])([ú])/g , "ତ୍$1" ) ;
+modified_substring = modified_substring.replace(   /([କନମପସ])([\uE8EF])/g , "ତ୍$1" ) ;
 
 // following statements for adjusting position of e, ai, o and au maatraas.
 	
 modified_substring = modified_substring.replace(   /([\uE83D])([କଖଗଘଙଚଛଜଝଞଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷଜ୍ଞୟ])/g , "$2$1" ) ;
 modified_substring = modified_substring.replace( /([\uE83D])([୍])([କଖଗଘଙଚଛଜଝଞଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷଜ୍ଞୟ])/g , "$2$3$1" ) ;
 modified_substring = modified_substring.replace( /([\uE83D])([୍])([କଖଗଘଙଚଛଜଝଞଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷଜ୍ଞୟ])/g , "$2$3$1" ) ;
-modified_substring = modified_substring.replace( /\uE83Dß/g  ,  "ୈ" ) ;
+modified_substring = modified_substring.replace( /\uE83D\uE842/g  ,  "ୈ" ) ;
 modified_substring = modified_substring.replace( /\uE83Dା/g  ,  "ୋ" ) ;
-modified_substring = modified_substring.replace( /\uE83D×/g  ,  "ୌ" ) ;
+modified_substring = modified_substring.replace( /\uE83D\uE843/g  ,  "ୌ" ) ;
 modified_substring = modified_substring.replace( /\uE83D/g   ,  "େ" ) ;
 //following three statement for adjusting position of reph ie, half r .
-modified_substring = modified_substring.replace( /([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷଜ୍ଞୟ])([ାିୀୁୂୃେୈୋୌଂଁ]*)\uE8EB/g , "ର୍$1$2" ) ;
-modified_substring = modified_substring.replace( /([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷଜ୍ଞୟ])([୍])\uE8EB/g , "ର୍$1$2" ) ;
+modified_substring = modified_substring.replace( /([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷୟ])([ା୍ିୀୁୂୃେୈୋୌଂଁ]*)([\uE8EB])/g , "\uE8EB$1$2" ) ;
+modified_substring = modified_substring.replace( /([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳୱଶଷସହକ୍ଷୟ])([\u0B4D])([\uE8EB])/g , "\uE8EB$1" ) ;
 modified_substring = modified_substring.replace( /\uE8EB/g , "ର୍" ) ;
 modified_substring = modified_substring.replace( /([ଂଁ])([ାିୀୁୂୃେୈୋୌ])/g , "$2$1" ) ;
 
